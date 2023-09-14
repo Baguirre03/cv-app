@@ -32,12 +32,12 @@
   - Each input will have the title be changed by passing through a prop "name"
   - useState will reflect overall Display() component.
 
-  - Files/components:
-    - section.jsx
-    - allSection.jsx
-    - input.jsx
-    - display.jsx
-    - app.jsx (display section + displays)
+- Files/components:
+  - section.jsx
+  - allSection.jsx
+  - input.jsx
+  - display.jsx
+  - app.jsx (display section + displays)
 
 ### Instructions:
 

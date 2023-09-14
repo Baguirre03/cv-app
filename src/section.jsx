@@ -1,21 +1,48 @@
+import Display from "./display";
 import Input from "./input";
 import { useState } from "react";
 
-export default function General() {
-  const [general, setGeneral] = useState({ name: "", email: "", phone: "" });
-  console.log(general);
-  function handeName(e) {
-    const copy = { ...general, name: e.target.value };
+function General({ onChange, handleName, handleEmail, handlePhone, values }) {
+  return (
+    <div>
+      <Input
+        type="text"
+        name="Name"
+        value={values.name}
+        onChange={handleName}
+      ></Input>
+
+      <Input
+        type="text"
+        name="Email"
+        value={values.email}
+        onChange={handleEmail}
+      ></Input>
+
+      <Input
+        type="text"
+        name="Phone-number"
+        value={values.phone}
+        onChange={handlePhone}
+      ></Input>
+    </div>
+  );
+}
+
+function Education() {
+  const [general, setGeneral] = useState({ school: "", title: "", date: "" });
+  function handleSchool(e) {
+    const copy = { ...general, school: e.target.value };
     setGeneral(copy);
   }
 
-  function handleEmail(e) {
-    const copy = { ...general, email: e.target.value };
+  function handleTitle(e) {
+    const copy = { ...general, title: e.target.value };
     setGeneral(copy);
   }
 
-  function handlePhone(e) {
-    const copy = { ...general, phone: e.target.value };
+  function handleDate(e) {
+    const copy = { ...general, date: e.target.value };
     setGeneral(copy);
   }
 
@@ -23,25 +50,31 @@ export default function General() {
     <div>
       <Input
         type="text"
-        name="Name"
-        value={general.name}
-        onChange={handeName}
+        name="School"
+        value={general.school}
+        onChange={handleSchool}
       ></Input>
-      <h1>{general.name}</h1>
+
       <Input
         type="text"
-        name="Name"
-        value={general.email}
-        onChange={handleEmail}
+        name="Title-of-study"
+        value={general.title}
+        onChange={handleTitle}
       ></Input>
-      <h1>{general.email}</h1>
+
       <Input
-        type="text"
-        name="Name"
-        value={general.phone}
-        onChange={handlePhone}
+        type="date"
+        name="Date-of-Study"
+        value={general.date}
+        onChange={handleDate}
       ></Input>
-      <h1>{general.phone}</h1>
+      <Display>
+        <h1>{general.school}</h1>
+        <h1>{general.title}</h1>
+        <h1>{general.date}</h1>
+      </Display>
     </div>
   );
 }
+
+export { Education, General };

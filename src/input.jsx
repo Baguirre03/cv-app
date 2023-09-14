@@ -1,4 +1,4 @@
-export default function Input({ type, name, value, onChange }) {
+export default function Input({ type, name, value, onChange, index }) {
   return (
     <>
       <label>{name}: </label>
