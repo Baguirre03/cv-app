@@ -1,6 +1,5 @@
 import Input from "./input";
 import Form from "./form";
-import { version } from "react-dom";
 
 function General({ onChange, values }) {
   return (
@@ -74,23 +73,23 @@ function Experience({ values, onChange, remove }) {
           name="position"
           label="Position title"
           value={exp.position}
-          onChange={onChange}
+          onChange={(e) => onChange(e, index)}
         ></Input>
         <Input
           type="next"
           name="responsibilities"
           label="responsibilities"
           value={exp.responsibilities}
-          onChange={onChange}
+          onChange={(e) => onChange(e, index)}
         ></Input>
         <Input
           type="date"
           name="dateWorked"
           label="Dateworked"
           value={exp.dateWorked}
-          onChange={onChange}
+          onChange={(e) => onChange(e, index)}
         ></Input>
-        <button onClick={() => remove(exp)}>Remove exerience</button>
+        <button onClick={() => remove(index)}>Remove exerience</button>
       </div>
     );
   });
