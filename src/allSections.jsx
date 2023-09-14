@@ -1,6 +1,14 @@
 import { useState } from "react";
-import { Education, Experience, General } from "./section.jsx";
+import {
+  Education,
+  EducationDisplay,
+  Experience,
+  General,
+  PersonalDisplay,
+  ExperienceDisplay,
+} from "./section.jsx";
 import Display from "./display.jsx";
+import Dropdown from "./dropDown.jsx";
 
 function experienceGenerator(company, position, responsbility, date) {
   return {
@@ -25,15 +33,31 @@ const initalSchool = {
   id: 1,
 };
 
-const initialExperience = {
-  company: "Skillsoft",
-  position: "Intern",
-  responsibilities: "this this",
-  dateWorked: "2003-05-29",
-  id: 2,
-};
+const initialExperience = [
+  {
+    company: "Skillsoft",
+    position: "Intern",
+    responsibilities: "this this",
+    dateWorked: "2003-05-29",
+    id: 1,
+  },
+  {
+    company: "Microsoft",
+    position: "Intern",
+    responsibilities: "that that",
+    dateWorked: "2003-05-29",
+    id: 2,
+  },
+  {
+    company: "thirddd",
+    position: "Intern",
+    responsibilities: "that that",
+    dateWorked: "2003-05-29",
+    id: 3,
+  },
+];
 
-export default function Sections() {
+export default function AllInformation() {
   const [personal, setPersonal] = useState(iniitalName);
   const [education, setEducation] = useState(initalSchool);
   const [experience, setExperience] = useState(initialExperience);
@@ -45,44 +69,43 @@ export default function Sections() {
     setEducation({ ...education, [e.target.name]: e.target.value });
   }
 
-  function handleExperience(e) {
-    console.log(experience);
-    setExperience({ ...experience, [e.target.name]: e.target.value });
+  function handleExperience(e, index) {
+    const copy = experience;
+    const objectFound = copy[index];
+    copy[index] = { ...objectFound, [e.target.name]: e.target.value };
+    console.log(copy);
+    setExperience(copy);
+  }
+
+  function removeObj(obj) {
+    const findIndex = experience.findIndex((object) => object.id == obj.id);
+    const copy = experience;
+    copy.splice(findIndex, 1);
+    setExperience(copy);
   }
 
   return (
     <>
-      <Display>
-        <General onChange={handleName} values={personal}></General>
-        <Education onChange={handleEducation} values={education}></Education>
-        <Experience
-          onChange={handleExperience}
-          values={experience}
-        ></Experience>
+      <Display className="inputs">
+        <Dropdown section="personal">
+          <General onChange={handleName} values={personal}></General>
+        </Dropdown>
+        <Dropdown section="education">
+          <Education onChange={handleEducation} values={education}></Education>
+        </Dropdown>
+        <Dropdown section="experience">
+          <Experience
+            onChange={handleExperience}
+            remove={removeObj}
+            values={experience}
+          ></Experience>
+        </Dropdown>
       </Display>
-      <Display>
-        {
-          <div key={personal.id}>
-            <h1>{personal.name}</h1>
-            <h1>{personal.email}</h1>
-            <h1>{personal.phone}</h1>
-          </div>
-        }
-        {
-          <div key={education.id}>
-            <h1>{education.school}</h1>
-            <h1>{education.tos}</h1>
-            <h1>{education.dos}</h1>
-          </div>
-        }
-        {
-          <div key={experience.id}>
-            <h1>{experience.company}</h1>
-            <h1>{experience.position}</h1>
-            <h1>{experience.responsibilities}</h1>
-            <h1>{experience.dateWorked}</h1>
-          </div>
-        }
+
+      <Display className="resume">
+        <PersonalDisplay values={personal}></PersonalDisplay>
+        <EducationDisplay values={education}></EducationDisplay>
+        <ExperienceDisplay values={experience}></ExperienceDisplay>
       </Display>
     </>
   );

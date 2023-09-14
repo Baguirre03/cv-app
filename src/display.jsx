@@ -1,7 +1,3 @@
-export default function Display({ children }) {
-  return <div className="display">{children}</div>;
+export default function Display({ children, className }) {
+  return <div className={className}>{children}</div>;
 }
-
-// function FormContainer({ children }) {
-//   return <form className="form">{children}</form>;
-// }

@@ -1,10 +1,10 @@
-import Display from "./display";
 import Input from "./input";
-import { useState } from "react";
+import Form from "./form";
+import { version } from "react-dom";
 
 function General({ onChange, values }) {
   return (
-    <div>
+    <Form>
       <Input
         type="text"
         name="name"
@@ -12,7 +12,6 @@ function General({ onChange, values }) {
         value={values.name}
         onChange={onChange}
       ></Input>
-
       <Input
         type="text"
         name="email"
@@ -20,7 +19,6 @@ function General({ onChange, values }) {
         value={values.email}
         onChange={onChange}
       ></Input>
-
       <Input
         type="text"
         name="phone"
@@ -28,13 +26,13 @@ function General({ onChange, values }) {
         value={values.phone}
         onChange={onChange}
       ></Input>
-    </div>
+    </Form>
   );
 }
 
 function Education({ onChange, values }) {
   return (
-    <div>
+    <Form>
       <Input
         type="text"
         name="school"
@@ -42,7 +40,6 @@ function Education({ onChange, values }) {
         value={values.school}
         onChange={onChange}
       ></Input>
-
       <Input
         type="text"
         name="tos"
@@ -50,7 +47,6 @@ function Education({ onChange, values }) {
         value={values.tos}
         onChange={onChange}
       ></Input>
-
       <Input
         type="date"
         name="dos"
@@ -58,43 +54,86 @@ function Education({ onChange, values }) {
         value={values.dos}
         onChange={onChange}
       ></Input>
-    </div>
+    </Form>
   );
 }
 
-function Experience({ onChange, values }) {
+function Experience({ values, onChange, remove }) {
+  return values.map((exp, index) => {
+    return (
+      <div key={exp.id} id={index}>
+        <Input
+          type="text"
+          name="company"
+          label="Company"
+          value={exp.company}
+          onChange={(e) => onChange(e, index)}
+        ></Input>
+        <Input
+          type="text"
+          name="position"
+          label="Position title"
+          value={exp.position}
+          onChange={onChange}
+        ></Input>
+        <Input
+          type="next"
+          name="responsibilities"
+          label="responsibilities"
+          value={exp.responsibilities}
+          onChange={onChange}
+        ></Input>
+        <Input
+          type="date"
+          name="dateWorked"
+          label="Dateworked"
+          value={exp.dateWorked}
+          onChange={onChange}
+        ></Input>
+        <button onClick={() => remove(exp)}>Remove exerience</button>
+      </div>
+    );
+  });
+}
+
+function PersonalDisplay({ values }) {
   return (
-    <div>
-      <Input
-        type="text"
-        name="company"
-        label="Company"
-        value={values.company}
-        onChange={onChange}
-      ></Input>
-      <Input
-        type="text"
-        name="position"
-        label="Position title"
-        value={values.position}
-        onChange={onChange}
-      ></Input>
-      <Input
-        type="next"
-        name="responsibilities"
-        label="responsibilities"
-        value={values.responsibilities}
-        onChange={onChange}
-      ></Input>
-      <Input
-        type="date"
-        name="dateWorked"
-        label="Dateworked"
-        value={values.dateWorked}
-        onChange={onChange}
-      ></Input>
-    </div>
+    <section key={values.id}>
+      <h1>{values.name}</h1>
+      <h1>{values.email}</h1>
+      <h1>{values.phone}</h1>
+    </section>
   );
 }
 
-export { Education, General, Experience };
+function EducationDisplay({ values }) {
+  return (
+    <section key={values.id}>
+      <h1>{values.school}</h1>
+      <h1>{values.tos}</h1>
+      <h1>{values.dos}</h1>
+    </section>
+  );
+}
+
+function ExperienceDisplay({ values }) {
+  return values.map((value) => {
+    return (
+      <section key={value.id}>
+        <h1>{value.company}</h1>
+        <h1>{value.position}</h1>
+        <h1>{value.responsibilities}</h1>
+        <h1>{value.dateWorked}</h1>
+      </section>
+    );
+  });
+}
+
+export {
+  Education,
+  General,
+  Experience,
+  EducationDisplay,
+  PersonalDisplay,
+  ExperienceDisplay,
+};
