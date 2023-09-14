@@ -67,22 +67,22 @@ function Experience({ onChange, values }) {
     <div>
       <Input
         type="text"
-        name="comapny"
+        name="company"
         label="Company"
         value={values.company}
         onChange={onChange}
       ></Input>
       <Input
         type="text"
-        name="title"
-        label="Title"
+        name="position"
+        label="Position title"
         value={values.position}
         onChange={onChange}
       ></Input>
       <Input
         type="next"
         name="responsibilities"
-        label="responsbilites"
+        label="responsibilities"
         value={values.responsibilities}
         onChange={onChange}
       ></Input>

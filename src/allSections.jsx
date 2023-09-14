@@ -34,25 +34,26 @@ const initialExperience = {
 };
 
 export default function Sections() {
-  const [name, setName] = useState(iniitalName);
+  const [personal, setPersonal] = useState(iniitalName);
   const [education, setEducation] = useState(initalSchool);
   const [experience, setExperience] = useState(initialExperience);
 
   function handleName(e) {
-    setName({ ...name, [e.target.name]: e.target.value });
+    setPersonal({ ...personal, [e.target.name]: e.target.value });
   }
   function handleEducation(e) {
     setEducation({ ...education, [e.target.name]: e.target.value });
   }
 
   function handleExperience(e) {
+    console.log(experience);
     setExperience({ ...experience, [e.target.name]: e.target.value });
   }
 
   return (
     <>
       <Display>
-        <General onChange={handleName} values={name}></General>
+        <General onChange={handleName} values={personal}></General>
         <Education onChange={handleEducation} values={education}></Education>
         <Experience
           onChange={handleExperience}
@@ -61,10 +62,10 @@ export default function Sections() {
       </Display>
       <Display>
         {
-          <div key={name.id}>
-            <h1>{name.name}</h1>
-            <h1>{name.email}</h1>
-            <h1>{name.phone}</h1>
+          <div key={personal.id}>
+            <h1>{personal.name}</h1>
+            <h1>{personal.email}</h1>
+            <h1>{personal.phone}</h1>
           </div>
         }
         {
