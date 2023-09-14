@@ -2,79 +2,99 @@ import Display from "./display";
 import Input from "./input";
 import { useState } from "react";
 
-function General({ onChange, handleName, handleEmail, handlePhone, values }) {
+function General({ onChange, values }) {
   return (
     <div>
       <Input
         type="text"
-        name="Name"
+        name="name"
+        label="Name"
         value={values.name}
-        onChange={handleName}
+        onChange={onChange}
       ></Input>
 
       <Input
         type="text"
-        name="Email"
+        name="email"
+        label="Email"
         value={values.email}
-        onChange={handleEmail}
+        onChange={onChange}
       ></Input>
 
       <Input
         type="text"
-        name="Phone-number"
+        name="phone"
+        label="Phone-number"
         value={values.phone}
-        onChange={handlePhone}
+        onChange={onChange}
       ></Input>
     </div>
   );
 }
 
-function Education() {
-  const [general, setGeneral] = useState({ school: "", title: "", date: "" });
-  function handleSchool(e) {
-    const copy = { ...general, school: e.target.value };
-    setGeneral(copy);
-  }
-
-  function handleTitle(e) {
-    const copy = { ...general, title: e.target.value };
-    setGeneral(copy);
-  }
-
-  function handleDate(e) {
-    const copy = { ...general, date: e.target.value };
-    setGeneral(copy);
-  }
-
+function Education({ onChange, values }) {
   return (
     <div>
       <Input
         type="text"
-        name="School"
-        value={general.school}
-        onChange={handleSchool}
+        name="school"
+        label="School"
+        value={values.school}
+        onChange={onChange}
       ></Input>
 
       <Input
         type="text"
-        name="Title-of-study"
-        value={general.title}
-        onChange={handleTitle}
+        name="tos"
+        label="Title of Study"
+        value={values.tos}
+        onChange={onChange}
       ></Input>
 
       <Input
         type="date"
-        name="Date-of-Study"
-        value={general.date}
-        onChange={handleDate}
+        name="dos"
+        label="Date started"
+        value={values.dos}
+        onChange={onChange}
       ></Input>
-      <Display>
-        <h1>{general.school}</h1>
-        <h1>{general.title}</h1>
-        <h1>{general.date}</h1>
-      </Display>
     </div>
   );
 }
 
-export { Education, General };
+function Experience({ onChange, values }) {
+  return (
+    <div>
+      <Input
+        type="text"
+        name="comapny"
+        label="Company"
+        value={values.company}
+        onChange={onChange}
+      ></Input>
+      <Input
+        type="text"
+        name="title"
+        label="Title"
+        value={values.position}
+        onChange={onChange}
+      ></Input>
+      <Input
+        type="next"
+        name="responsibilities"
+        label="responsbilites"
+        value={values.responsibilities}
+        onChange={onChange}
+      ></Input>
+      <Input
+        type="date"
+        name="dateWorked"
+        label="Dateworked"
+        value={values.dateWorked}
+        onChange={onChange}
+      ></Input>
+    </div>
+  );
+}
+
+export { Education, General, Experience };
