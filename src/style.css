@@ -35,7 +35,6 @@
 section {
     display: flex;
     flex-direction: column;
-    width: 100%;
     align-items: center;
     justify-content: center;
 }
@@ -46,23 +45,42 @@ form {
 }
 
 .drop-down {
+    min-width: 40%;
     display: flex;
-    width: 100%;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid black;
+    padding: 5px;
+    
+}
+
+.drop-down-svg {
+    width: 4vh;
+    fill: green;
+    animation: rotate 1s ease-in-out reverse;
+    transform: rotate(0deg);
 }
 
 .shown-form {
     display: flex;
     flex-direction: column;
+    min-width: 40%;
     border: 1px solid black;
     padding: 5px;
 }
 
+.arrow-up {
+    width: 4vh;
+    fill: red;
+    animation: rotate 1s ease-in-out;
+    transform: rotate(180deg);
+}
+
 .form-display {
     transform-origin: top;
-    animation: dropdown .5s 
+    animation: dropdown 500ms ease-in-out;
 }
+
 
 .top {
     display: flex;
@@ -72,6 +90,8 @@ form {
 .collapse {
     width: max-content;
     align-self: flex-end;
+    background: none;
+    border: none;
 }
 
 @keyframes dropdown { 
@@ -82,4 +102,15 @@ form {
       100% {
         transform: scaleY(1);
       }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+        fill: green;
+    }
+    100% {
+        transform: rotate(180deg);
+        fill: red;
+    }
 }
