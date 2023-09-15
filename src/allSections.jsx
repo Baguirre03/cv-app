@@ -10,13 +10,13 @@ import {
 import Display from "./display.jsx";
 import Dropdown from "./dropDown.jsx";
 
-function experienceGenerator(company, position, responsbility, date) {
+function experienceGenerator(company, position, responsbility, date, id) {
   return {
     company: company,
     position: position,
     responsbility: responsbility,
     date: date,
-    id: company,
+    id: id,
   };
 }
 
@@ -37,13 +37,6 @@ const initalSchool = {
 const initialExperience = [
   {
     company: "Skillsoft",
-    position: "Intern",
-    responsibilities: "this this",
-    dateWorked: "2003-05-29",
-    id: crypto.randomUUID(),
-  },
-  {
-    company: "Micro",
     position: "Intern",
     responsibilities: "this this",
     dateWorked: "2003-05-29",
@@ -84,7 +77,7 @@ export default function AllInformation() {
   }
 
   return (
-    <>
+    <div className="container">
       <Display className="inputs">
         <Dropdown section="personal">
           <General onChange={handleName} values={personal}></General>
@@ -96,6 +89,7 @@ export default function AllInformation() {
           section="experience"
           addExperience={addExperience}
           experience={true}
+          length={experience.length}
         >
           <Experience
             onChange={handleExperience}
@@ -110,6 +104,6 @@ export default function AllInformation() {
         <EducationDisplay values={education}></EducationDisplay>
         <ExperienceDisplay values={experience}></ExperienceDisplay>
       </Display>
-    </>
+    </div>
   );
 }

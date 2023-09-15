@@ -5,17 +5,23 @@ export default function Dropdown({
   section,
   addExperience,
   experience,
+  length,
 }) {
   const [dropped, editDropped] = useState(false);
+  let capped = length >= 3;
 
   function handleDrop() {
     return dropped ? editDropped(false) : editDropped(true);
   }
 
   function Experience() {
-    return experience ? (
+    return experience && !capped ? (
       <button onClick={addExperience}>Add Experience</button>
     ) : null;
+  }
+
+  function ExperienceCap() {
+    return capped ? <h1>no more!</h1> : null;
   }
 
   return dropped ? (
@@ -24,6 +30,7 @@ export default function Dropdown({
       <div>
         {children} <Experience></Experience>
       </div>
+      <ExperienceCap></ExperienceCap>
     </div>
   ) : (
     <div>

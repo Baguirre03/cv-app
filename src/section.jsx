@@ -60,7 +60,7 @@ function Education({ onChange, values }) {
 function Experience({ values, onChange, remove }) {
   return values.map((exp, index) => {
     return (
-      <div key={exp.id} id={index}>
+      <Form key={exp.id}>
         <Input
           type="text"
           name="company"
@@ -90,7 +90,7 @@ function Experience({ values, onChange, remove }) {
           onChange={(e) => onChange(e, index)}
         ></Input>
         <button onClick={() => remove(index)}>Remove exerience</button>
-      </div>
+      </Form>
     );
   });
 }
