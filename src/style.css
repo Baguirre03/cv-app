@@ -59,6 +59,11 @@ form {
     padding: 5px;
 }
 
+.form-display {
+    transform-origin: top;
+    animation: dropdown .5s 
+}
+
 .top {
     display: flex;
     justify-content: space-between;
@@ -67,4 +72,14 @@ form {
 .collapse {
     width: max-content;
     align-self: flex-end;
+}
+
+@keyframes dropdown { 
+    0% {
+        transform: scaleY(0);
+      }
+      
+      100% {
+        transform: scaleY(1);
+      }
 }

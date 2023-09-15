@@ -32,7 +32,7 @@ export default function Dropdown({
           Arrow-two
         </button>
       </div>
-      <div>
+      <div className="form-display">
         {children} <Experience></Experience>
       </div>
       <ExperienceCap></ExperienceCap>
