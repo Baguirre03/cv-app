@@ -8,7 +8,7 @@ export default function Dropdown({
   length,
 }) {
   const [dropped, editDropped] = useState(false);
-  let capped = length >= 3;
+  const capped = length >= 3;
 
   function handleDrop() {
     return dropped ? editDropped(false) : editDropped(true);
@@ -25,16 +25,22 @@ export default function Dropdown({
   }
 
   return dropped ? (
-    <div>
-      <button onClick={handleDrop}>Collapse {section}</button>
+    <div className="shown-form">
+      <div className="top">
+        <h3>{section}</h3>
+        <button onClick={handleDrop} className="collapse">
+          Arrow-two
+        </button>
+      </div>
       <div>
         {children} <Experience></Experience>
       </div>
       <ExperienceCap></ExperienceCap>
     </div>
   ) : (
-    <div>
-      <button onClick={handleDrop}>Show {section}</button>
+    <div className="drop-down">
+      <h3>{section}</h3>
+      <button onClick={handleDrop}>Down Arrow</button>
     </div>
   );
 }

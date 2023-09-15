@@ -77,33 +77,39 @@ export default function AllInformation() {
   }
 
   return (
-    <div className="container">
-      <Display className="inputs">
-        <Dropdown section="personal">
-          <General onChange={handleName} values={personal}></General>
-        </Dropdown>
-        <Dropdown section="education">
-          <Education onChange={handleEducation} values={education}></Education>
-        </Dropdown>
-        <Dropdown
-          section="experience"
-          addExperience={addExperience}
-          experience={true}
-          length={experience.length}
-        >
-          <Experience
-            onChange={handleExperience}
-            remove={removeObj}
-            values={experience}
-          ></Experience>
-        </Dropdown>
-      </Display>
+    <>
+      <h1 className="title">CV-App</h1>
+      <div className="display-container">
+        <Display className="inputs">
+          <Dropdown section="personal">
+            <General onChange={handleName} values={personal}></General>
+          </Dropdown>
+          <Dropdown section="education">
+            <Education
+              onChange={handleEducation}
+              values={education}
+            ></Education>
+          </Dropdown>
+          <Dropdown
+            section="experience"
+            addExperience={addExperience}
+            experience={true}
+            length={experience.length}
+          >
+            <Experience
+              onChange={handleExperience}
+              remove={removeObj}
+              values={experience}
+            ></Experience>
+          </Dropdown>
+        </Display>
 
-      <Display className="resume">
-        <PersonalDisplay values={personal}></PersonalDisplay>
-        <EducationDisplay values={education}></EducationDisplay>
-        <ExperienceDisplay values={experience}></ExperienceDisplay>
-      </Display>
-    </div>
+        <Display className="resume">
+          <PersonalDisplay values={personal}></PersonalDisplay>
+          <EducationDisplay values={education}></EducationDisplay>
+          <ExperienceDisplay values={experience}></ExperienceDisplay>
+        </Display>
+      </div>
+    </>
   );
 }
