@@ -3,6 +3,12 @@
     margin: 0;
 }
 
+#root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .title {
     display: flex;
     align-content: center;
@@ -14,6 +20,7 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem;
+    flex: 1;
 }
 
 .inputs {
@@ -28,7 +35,6 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    justify-content: center;
     align-items: center;
 }
 
@@ -51,13 +57,13 @@ form {
     justify-content: space-between;
     border: 1px solid black;
     padding: 5px;
-    
+
 }
 
 .drop-down-svg {
     width: 4vh;
     fill: green;
-    animation: rotate 1s ease-in-out reverse;
+    animation: rotate 500ms ease-in-out reverse;
     transform: rotate(0deg);
 }
 
@@ -67,12 +73,13 @@ form {
     min-width: 40%;
     border: 1px solid black;
     padding: 5px;
+
 }
 
 .arrow-up {
     width: 4vh;
     fill: red;
-    animation: rotate 1s ease-in-out;
+    animation: rotate 500ms ease-in-out;
     transform: rotate(180deg);
 }
 
@@ -110,7 +117,7 @@ form {
         fill: green;
     }
     100% {
-        transform: rotate(180deg);
+        transform: rotate(180deg) rotateY(180deg);
         fill: red;
     }
 }
