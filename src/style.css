@@ -60,7 +60,32 @@
 
 .education-content {
     display: flex;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.experience {
+    width: 100%;
+}
+
+.titles-exp {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.experience-detail {
+    display: flex;
+}
+
+.bottom-exp {
+    align-items: end;
+    justify-items: flex-end;
+}
+
+.response-list {
+    margin-left: 10%;
+    width: 100%;
 }
 
 hr {

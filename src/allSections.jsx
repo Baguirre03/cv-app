@@ -10,12 +10,22 @@ import {
 import Display from "./display.jsx";
 import Dropdown from "./dropDown.jsx";
 
-function experienceGenerator(company, position, responsbility, date, id) {
+function experienceGenerator(
+  company,
+  position,
+  responsbility,
+  location,
+  dateStarted,
+  dateEnded,
+  id,
+) {
   return {
     company: company,
     position: position,
     responsbility: responsbility,
-    date: date,
+    location: location,
+    dateStarted: dateStarted,
+    dateEnded: dateEnded,
     id: id,
   };
 }
@@ -40,6 +50,7 @@ const initialExperience = [
     company: "",
     position: "",
     responsibilities: "",
+    location: "",
     dateWorked: "",
     id: crypto.randomUUID(),
   },
@@ -108,7 +119,11 @@ export default function AllInformation() {
         <Display className="resume">
           <PersonalDisplay values={personal}></PersonalDisplay>
           <EducationDisplay values={education}></EducationDisplay>
-          <ExperienceDisplay values={experience}></ExperienceDisplay>
+          <div className="experience">
+            <h3>Experience</h3>
+            <hr></hr>
+            <ExperienceDisplay values={experience}></ExperienceDisplay>
+          </div>
         </Display>
       </div>
     </>

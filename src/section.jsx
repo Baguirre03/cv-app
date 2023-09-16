@@ -83,17 +83,31 @@ function Experience({ values, onChange, remove }) {
           onChange={(e) => onChange(e, index)}
         ></Input>
         <Input
+          type="text"
+          name="location"
+          label="Location"
+          value={exp.location}
+          onChange={(e) => onChange(e, index)}
+        ></Input>
+        <Input
           type="next"
           name="responsibilities"
-          label="responsibilities"
+          label="Responsibilities"
           value={exp.responsibilities}
           onChange={(e) => onChange(e, index)}
         ></Input>
         <Input
           type="date"
           name="dateWorked"
-          label="Dateworked"
-          value={exp.dateWorked}
+          label="Date worked"
+          value={exp.dateStarted}
+          onChange={(e) => onChange(e, index)}
+        ></Input>
+        <Input
+          type="date"
+          name="dateEnded"
+          label="Date ended"
+          value={exp.dateEnded}
           onChange={(e) => onChange(e, index)}
         ></Input>
         <button onClick={() => remove(index)}>Remove exerience</button>
@@ -108,8 +122,6 @@ function PersonalDisplay({ values }) {
       <h2>{values.name}</h2>
       <p>{values.email}</p>
       <p>{values.phone}</p>
-      <br></br>
-      <hr></hr>
     </section>
   );
 }
@@ -121,11 +133,15 @@ function EducationDisplay({ values }) {
       <hr></hr>
       <section key={values.id} className="education-content">
         <div className="top-ed">
-          <p>{values.school}</p>
-          <p>{values.location}</p>
+          <strong>
+            <p>{values.school}</p>
+          </strong>
+          <em>
+            <p>{values.tos}</p>
+          </em>
         </div>
         <div className="bottom-ed">
-          <p>{values.tos}</p>
+          <p>{values.location}</p>
           <p>{values.dos}</p>
         </div>
       </section>
@@ -136,11 +152,26 @@ function EducationDisplay({ values }) {
 function ExperienceDisplay({ values }) {
   return values.map((value) => {
     return (
-      <section key={value.id}>
-        <h1>{value.company}</h1>
-        <h1>{value.position}</h1>
-        <h1>{value.responsibilities}</h1>
-        <h1>{value.dateWorked}</h1>
+      <section className="experience-detail" key={value.id}>
+        <div className="titles-exp">
+          <div className="top-exp">
+            <strong>
+              <p>{value.company}</p>
+            </strong>
+            <p>{value.position}</p>
+          </div>
+          <div className="bottom-exp">
+            <em>
+              <p>{value.location}</p>
+            </em>
+            <p>
+              {value.dateWorked} - {value.dateEnded}
+            </p>
+          </div>
+        </div>
+        <ul className="response-list">
+          <li>{value.responsibilities}</li>
+        </ul>
       </section>
     );
   });
