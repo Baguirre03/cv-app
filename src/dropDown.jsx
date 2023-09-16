@@ -17,7 +17,9 @@ export default function Dropdown({
 
   function Experience() {
     return experience && !capped ? (
-      <button onClick={addExperience}>Add Experience</button>
+      <button className="add-button" onClick={addExperience}>
+        Add Experience
+      </button>
     ) : null;
   }
 

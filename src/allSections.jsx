@@ -51,7 +51,8 @@ const initialExperience = [
     position: "",
     responsibilities: "",
     location: "",
-    dateWorked: "",
+    dateStarted: "",
+    dateEnded: "",
     id: crypto.randomUUID(),
   },
 ];
@@ -84,7 +85,7 @@ export default function AllInformation() {
 
   function addExperience() {
     const copy = [...experience];
-    copy.push(experienceGenerator("", "", "", "", crypto.randomUUID()));
+    copy.push(experienceGenerator("", "", "", "", "", "", crypto.randomUUID()));
     setExperience(copy);
   }
 

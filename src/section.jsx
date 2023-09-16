@@ -1,5 +1,15 @@
 import Input from "./input";
 import Form from "./form";
+import format from "date-fns/format";
+import parseISO from "date-fns/parseISO";
+
+function formatDate(date) {
+  return format(parseISO(date), "LLLL yyyy");
+}
+
+function Date({ date }) {
+  return date === "" || date === null ? null : formatDate(date);
+}
 
 function General({ onChange, values }) {
   return (
@@ -67,7 +77,7 @@ function Education({ onChange, values }) {
 function Experience({ values, onChange, remove }) {
   return values.map((exp, index) => {
     return (
-      <Form key={exp.id}>
+      <Form className="experience-form" key={exp.id}>
         <Input
           type="text"
           name="company"
@@ -98,8 +108,8 @@ function Experience({ values, onChange, remove }) {
         ></Input>
         <Input
           type="date"
-          name="dateWorked"
-          label="Date worked"
+          name="dateStarted"
+          label="Date started"
           value={exp.dateStarted}
           onChange={(e) => onChange(e, index)}
         ></Input>
@@ -110,7 +120,9 @@ function Experience({ values, onChange, remove }) {
           value={exp.dateEnded}
           onChange={(e) => onChange(e, index)}
         ></Input>
-        <button onClick={() => remove(index)}>Remove exerience</button>
+        <button className="remove-experience" onClick={() => remove(index)}>
+          Remove exerience
+        </button>
       </Form>
     );
   });
@@ -128,7 +140,7 @@ function PersonalDisplay({ values }) {
 
 function EducationDisplay({ values }) {
   return (
-    <div className="education">
+    <div key={values.id} className="education">
       <h3>Education</h3>
       <hr></hr>
       <section key={values.id} className="education-content">
@@ -141,8 +153,14 @@ function EducationDisplay({ values }) {
           </em>
         </div>
         <div className="bottom-ed">
-          <p>{values.location}</p>
-          <p>{values.dos}</p>
+          <strong>
+            <p>{values.location}</p>
+          </strong>
+          <em>
+            <p>
+              <Date date={values.dos}></Date>
+            </p>
+          </em>
         </div>
       </section>
     </div>
@@ -165,13 +183,16 @@ function ExperienceDisplay({ values }) {
               <p>{value.location}</p>
             </em>
             <p>
-              {value.dateWorked} - {value.dateEnded}
+              <Date date={value.dateStarted}></Date>
+              {" - "}
+              <Date date={value.dateEnded}></Date>
             </p>
           </div>
         </div>
         <ul className="response-list">
           <li>{value.responsibilities}</li>
         </ul>
+        <br></br>
       </section>
     );
   });
