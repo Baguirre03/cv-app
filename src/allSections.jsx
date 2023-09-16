@@ -21,25 +21,26 @@ function experienceGenerator(company, position, responsbility, date, id) {
 }
 
 const iniitalName = {
-  name: "John",
-  email: "test",
-  phone: "test",
+  name: "",
+  email: "",
+  phone: "",
   id: 0,
 };
 
 const initalSchool = {
-  school: "Loyola",
-  tos: "Business administration",
-  dos: "2003-05-03",
+  school: "",
+  location: "",
+  tos: "",
+  dos: "",
   id: 1,
 };
 
 const initialExperience = [
   {
-    company: "Skillsoft",
-    position: "Intern",
-    responsibilities: "this this",
-    dateWorked: "2003-05-29",
+    company: "",
+    position: "",
+    responsibilities: "",
+    dateWorked: "",
     id: crypto.randomUUID(),
   },
 ];

@@ -41,6 +41,13 @@ function Education({ onChange, values }) {
       ></Input>
       <Input
         type="text"
+        name="location"
+        label="Location"
+        value={values.location}
+        onChange={onChange}
+      ></Input>
+      <Input
+        type="text"
         name="tos"
         label="Title of Study"
         value={values.tos}
@@ -98,20 +105,31 @@ function Experience({ values, onChange, remove }) {
 function PersonalDisplay({ values }) {
   return (
     <section key={values.id}>
-      <h1>{values.name}</h1>
-      <h1>{values.email}</h1>
-      <h1>{values.phone}</h1>
+      <h2>{values.name}</h2>
+      <p>{values.email}</p>
+      <p>{values.phone}</p>
+      <br></br>
+      <hr></hr>
     </section>
   );
 }
 
 function EducationDisplay({ values }) {
   return (
-    <section key={values.id}>
-      <h1>{values.school}</h1>
-      <h1>{values.tos}</h1>
-      <h1>{values.dos}</h1>
-    </section>
+    <div className="education">
+      <h3>Education</h3>
+      <hr></hr>
+      <section key={values.id} className="education-content">
+        <div className="top-ed">
+          <p>{values.school}</p>
+          <p>{values.location}</p>
+        </div>
+        <div className="bottom-ed">
+          <p>{values.tos}</p>
+          <p>{values.dos}</p>
+        </div>
+      </section>
+    </div>
   );
 }
 

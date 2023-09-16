@@ -9,6 +9,7 @@ export default function Dropdown({
 }) {
   const [dropped, editDropped] = useState(false);
   const capped = length >= 3;
+  const uppercase = section.slice(0, 1).toUpperCase() + section.slice(1);
 
   function handleDrop() {
     return dropped ? editDropped(false) : editDropped(true);
@@ -27,7 +28,7 @@ export default function Dropdown({
   return dropped ? (
     <div className="shown-form">
       <div className="top">
-        <h3>{section}</h3>
+        <h3 className="section-title">{uppercase}</h3>
         <button onClick={handleDrop} className="collapse">
           <svg
             className="arrow-up"
@@ -46,7 +47,7 @@ export default function Dropdown({
     </div>
   ) : (
     <div className="drop-down">
-      <h3>{section}</h3>
+      <h3 className="section-title">{uppercase}</h3>
       <button className="collapse" onClick={handleDrop}>
         <svg
           className="drop-down-svg"
