@@ -72,18 +72,17 @@ export default function AllInformation() {
   function handleResponsibilites(e, index, parentId) {
     let copy = [...experience];
     const indexOfParent = copy.findIndex((element) => element.id == parentId);
-    let arrayCopy = [...copy[indexOfParent].responsibilities];
-    arrayCopy[index] = { ...arrayCopy[index], value: e.target.value };
-    copy[indexOfParent].responsibilities = arrayCopy;
+    copy[indexOfParent].responsibilities[index] = {
+      ...copy[indexOfParent].responsibilities[index],
+      value: e.target.value,
+    };
     setExperience(copy);
   }
 
   function handleRemoveResponse(e, index, parentId) {
     let copy = [...experience];
     const indexOfParent = copy.findIndex((element) => element.id == parentId);
-    let arrayCopy = [...copy[indexOfParent].responsibilities];
-    arrayCopy.splice(index, 1);
-    copy[indexOfParent].responsibilities = arrayCopy;
+    copy[indexOfParent].responsibilities.splice(index, 1);
     setExperience(copy);
   }
 
