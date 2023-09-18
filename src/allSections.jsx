@@ -41,7 +41,7 @@ const initialExperience = [
   {
     company: "",
     position: "",
-    responsibilities: [{ value: "hellothere!", id: crypto.randomUUID() }],
+    responsibilities: [{ value: "", id: crypto.randomUUID() }],
     location: "",
     dateStarted: "",
     dateEnded: "",
