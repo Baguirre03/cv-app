@@ -10,23 +10,15 @@ import {
 import Display from "./display.jsx";
 import Dropdown from "./dropDown.jsx";
 
-function experienceGenerator(
-  company,
-  position,
-  responsbility,
-  location,
-  dateStarted,
-  dateEnded,
-  id,
-) {
+function experienceGenerator() {
   return {
-    company: company,
-    position: position,
-    responsbility: responsbility,
-    location: location,
-    dateStarted: dateStarted,
-    dateEnded: dateEnded,
-    id: id,
+    company: "",
+    position: "",
+    responsibilities: [{ value: "", id: crypto.randomUUID() }],
+    location: "",
+    dateStarted: "",
+    dateEnded: "",
+    id: "",
   };
 }
 
@@ -49,7 +41,10 @@ const initialExperience = [
   {
     company: "",
     position: "",
-    responsibilities: "",
+    responsibilities: [
+      { value: "hellothere!", id: crypto.randomUUID() },
+      { value: "hi!", id: crypto.randomUUID() },
+    ],
     location: "",
     dateStarted: "",
     dateEnded: "",
@@ -77,6 +72,17 @@ export default function AllInformation() {
     setExperience(copy);
   }
 
+  function handleResponsibilites(e, index, id) {
+    const copy = [...experience];
+    let objectCopy = { ...experience[index] };
+    let response = objectCopy.responsibilities.filter((obj) => obj.id !== id);
+    const indexOfResponse = objectCopy.responsibilities.indexOf(response[0]);
+    const newResponse = { ...response[0], value: e.target.value };
+    objectCopy.responsibilities[indexOfResponse] = newResponse;
+    copy[index] = objectCopy;
+    setExperience(copy);
+  }
+
   function removeObj(index) {
     const copy = [...experience];
     copy.splice(index, 1);
@@ -85,7 +91,14 @@ export default function AllInformation() {
 
   function addExperience() {
     const copy = [...experience];
-    copy.push(experienceGenerator("", "", "", "", "", "", crypto.randomUUID()));
+    copy.push(experienceGenerator());
+    setExperience(copy);
+  }
+
+  function addResponsibility(e, index) {
+    const copy = [...experience];
+    let objectCopy = { ...experience[index] };
+    objectCopy.responsibilities.push({ value: "", id: crypto.randomUUID() });
     setExperience(copy);
   }
 
@@ -113,6 +126,8 @@ export default function AllInformation() {
               onChange={handleExperience}
               remove={removeObj}
               values={experience}
+              addResponsibility={addResponsibility}
+              handleResponsibilites={handleResponsibilites}
             ></Experience>
           </Dropdown>
         </Display>

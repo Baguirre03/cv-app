@@ -74,7 +74,13 @@ function Education({ onChange, values }) {
   );
 }
 
-function Experience({ values, onChange, remove }) {
+function Experience({
+  values,
+  onChange,
+  remove,
+  addResponsibility,
+  handleResponsibilites,
+}) {
   return values.map((exp, index) => {
     return (
       <Form className="experience-form" key={exp.id}>
@@ -100,13 +106,6 @@ function Experience({ values, onChange, remove }) {
           onChange={(e) => onChange(e, index)}
         ></Input>
         <Input
-          type="next"
-          name="responsibilities"
-          label="Responsibilities"
-          value={exp.responsibilities}
-          onChange={(e) => onChange(e, index)}
-        ></Input>
-        <Input
           type="date"
           name="dateStarted"
           label="Date started"
@@ -120,6 +119,28 @@ function Experience({ values, onChange, remove }) {
           value={exp.dateEnded}
           onChange={(e) => onChange(e, index)}
         ></Input>
+        {exp.responsibilities.map((responsibility) => {
+          return (
+            <Input
+              key={responsibility.id}
+              type="next"
+              name="responsibilities"
+              label="Responsibility"
+              value={responsibility.value}
+              onChange={(e) =>
+                handleResponsibilites(e, index, responsibility.id)
+              }
+            ></Input>
+          );
+        })}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            addResponsibility(e, index);
+          }}
+        >
+          Add Responsibility
+        </button>
         <button className="remove-experience" onClick={() => remove(index)}>
           Remove exerience
         </button>
@@ -190,7 +211,9 @@ function ExperienceDisplay({ values }) {
           </div>
         </div>
         <ul className="response-list">
-          <li>{value.responsibilities}</li>
+          {value.responsibilities.map((response) => (
+            <li key={response.id}>{response.value}</li>
+          ))}
         </ul>
         <br></br>
       </section>
