@@ -1,10 +1,26 @@
-export default function Input({ label, type, name, value, onChange }) {
+export default function Input({
+  label,
+  type,
+  name,
+  value,
+  onChange,
+  handleRemove,
+  index,
+  parentId,
+}) {
   function Label() {
-    return <label>{label}: </label>;
+    return label != null ? <label>{label}: </label> : null;
   }
   function Button() {
     return name === "responsibilities" ? (
-      <button>Remove responsibility</button>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          handleRemove(e, index, parentId);
+        }}
+      >
+        Remove responsibility
+      </button>
     ) : null;
   }
 

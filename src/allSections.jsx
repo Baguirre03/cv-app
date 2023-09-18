@@ -69,13 +69,21 @@ export default function AllInformation() {
     setExperience(copy);
   }
 
-  function handleResponsibilites(e, index, id, parentId) {
+  function handleResponsibilites(e, index, parentId) {
     let copy = [...experience];
     const indexOfParent = copy.findIndex((element) => element.id == parentId);
     let arrayCopy = [...copy[indexOfParent].responsibilities];
     arrayCopy[index] = { ...arrayCopy[index], value: e.target.value };
     copy[indexOfParent].responsibilities = arrayCopy;
-    console.log(copy);
+    setExperience(copy);
+  }
+
+  function handleRemoveResponse(e, index, parentId) {
+    let copy = [...experience];
+    const indexOfParent = copy.findIndex((element) => element.id == parentId);
+    let arrayCopy = [...copy[indexOfParent].responsibilities];
+    arrayCopy.splice(index, 1);
+    copy[indexOfParent].responsibilities = arrayCopy;
     setExperience(copy);
   }
 
@@ -124,6 +132,7 @@ export default function AllInformation() {
               values={experience}
               addResponsibility={addResponsibility}
               handleResponsibilites={handleResponsibilites}
+              handleRemoveResponsibility={handleRemoveResponse}
             ></Experience>
           </Dropdown>
         </Display>

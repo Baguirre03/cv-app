@@ -80,6 +80,7 @@ function Experience({
   remove,
   addResponsibility,
   handleResponsibilites,
+  handleRemoveResponsibility,
 }) {
   return values.map((exp, index) => {
     return (
@@ -119,20 +120,24 @@ function Experience({
           value={exp.dateEnded}
           onChange={(e) => onChange(e, index)}
         ></Input>
-        {exp.responsibilities.map((responsibility, index) => {
-          return (
-            <Input
-              key={responsibility.id}
-              type="next"
-              name="responsibilities"
-              label="Responsibility"
-              value={responsibility.value}
-              onChange={(e) =>
-                handleResponsibilites(e, index, responsibility.id, exp.id)
-              }
-            ></Input>
-          );
-        })}
+        <h3>Responsibilities: </h3>
+        <ul>
+          {exp.responsibilities.map((responsibility, index) => {
+            return (
+              <Input
+                key={responsibility.id}
+                type="next"
+                name="responsibilities"
+                label={null}
+                value={responsibility.value}
+                index={index}
+                parentId={exp.id}
+                handleRemove={handleRemoveResponsibility}
+                onChange={(e) => handleResponsibilites(e, index, exp.id)}
+              ></Input>
+            );
+          })}
+        </ul>
         <button
           onClick={(e) => {
             e.preventDefault();
