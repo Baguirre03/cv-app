@@ -120,32 +120,43 @@ function Experience({
           value={exp.dateEnded}
           onChange={(e) => onChange(e, index)}
         ></Input>
-        <h3>Responsibilities: </h3>
-        <ul>
-          {exp.responsibilities.map((responsibility, index) => {
-            return (
-              <Input
-                key={responsibility.id}
-                type="next"
-                name="responsibilities"
-                label={null}
-                value={responsibility.value}
-                index={index}
-                parentId={exp.id}
-                handleRemove={handleRemoveResponsibility}
-                onChange={(e) => handleResponsibilites(e, index, exp.id)}
-              ></Input>
-            );
-          })}
-        </ul>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            addResponsibility(e, index);
-          }}
-        >
-          Add Responsibility
-        </button>
+        <div className="responsibilties-list">
+          <h3>Responsibilities: </h3>
+          <ul className="list">
+            {exp.responsibilities.map((responsibility, index) => {
+              return (
+                <Input
+                  key={responsibility.id}
+                  type="next"
+                  name="responsibilities"
+                  label={null}
+                  value={responsibility.value}
+                  index={index}
+                  parentId={exp.id}
+                  newClass="responsibility"
+                  handleRemove={handleRemoveResponsibility}
+                  onChange={(e) => handleResponsibilites(e, index, exp.id)}
+                ></Input>
+              );
+            })}
+            <button
+              className="add-responsibility"
+              onClick={(e) => {
+                e.preventDefault();
+                addResponsibility(e, index);
+              }}
+            >
+              <svg
+                className="add-svg"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <title>plus</title>
+                <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+              </svg>{" "}
+            </button>
+          </ul>
+        </div>
         <button className="remove-experience" onClick={() => remove(index)}>
           Remove exerience
         </button>
