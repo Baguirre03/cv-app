@@ -119,7 +119,7 @@ function Experience({
           value={exp.dateEnded}
           onChange={(e) => onChange(e, index)}
         ></Input>
-        {exp.responsibilities.map((responsibility) => {
+        {exp.responsibilities.map((responsibility, index) => {
           return (
             <Input
               key={responsibility.id}
@@ -128,7 +128,7 @@ function Experience({
               label="Responsibility"
               value={responsibility.value}
               onChange={(e) =>
-                handleResponsibilites(e, index, responsibility.id)
+                handleResponsibilites(e, index, responsibility.id, exp.id)
               }
             ></Input>
           );

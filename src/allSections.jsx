@@ -14,11 +14,11 @@ function experienceGenerator() {
   return {
     company: "",
     position: "",
-    responsibilities: [{ value: "", id: crypto.randomUUID() }],
+    responsibilities: [{ value: "test", id: crypto.randomUUID() }],
     location: "",
     dateStarted: "",
     dateEnded: "",
-    id: "",
+    id: crypto.randomUUID(),
   };
 }
 
@@ -41,10 +41,7 @@ const initialExperience = [
   {
     company: "",
     position: "",
-    responsibilities: [
-      { value: "hellothere!", id: crypto.randomUUID() },
-      { value: "hi!", id: crypto.randomUUID() },
-    ],
+    responsibilities: [{ value: "hellothere!", id: crypto.randomUUID() }],
     location: "",
     dateStarted: "",
     dateEnded: "",
@@ -72,14 +69,13 @@ export default function AllInformation() {
     setExperience(copy);
   }
 
-  function handleResponsibilites(e, index, id) {
-    const copy = [...experience];
-    let objectCopy = { ...experience[index] };
-    let response = objectCopy.responsibilities.filter((obj) => obj.id !== id);
-    const indexOfResponse = objectCopy.responsibilities.indexOf(response[0]);
-    const newResponse = { ...response[0], value: e.target.value };
-    objectCopy.responsibilities[indexOfResponse] = newResponse;
-    copy[index] = objectCopy;
+  function handleResponsibilites(e, index, id, parentId) {
+    let copy = [...experience];
+    const indexOfParent = copy.findIndex((element) => element.id == parentId);
+    let arrayCopy = [...copy[indexOfParent].responsibilities];
+    arrayCopy[index] = { ...arrayCopy[index], value: e.target.value };
+    copy[indexOfParent].responsibilities = arrayCopy;
+    console.log(copy);
     setExperience(copy);
   }
 
