@@ -172,7 +172,7 @@ input:focus {
 
 .experience-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(1fr, 5);
 }
 
 .form-input {
@@ -257,7 +257,6 @@ input:focus {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    align-items: center;
 }
 
 .responsibility { 
@@ -287,7 +286,6 @@ input:focus {
     box-shadow: 2px 2px 2px black;
     background-color: var(--blue);
     justify-content: center;
-    width: 50%;
 }
 
 .add-svg {
@@ -298,7 +296,18 @@ input:focus {
     background-color: green;
     outline: 1px black;
     transition: all .2s;
-    width: 70%;
+}
+
+.responsibilties-list {
+    display: flex;
+    grid-column: span 2;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form-input:nth-child(5) {
+    grid-column: span 2;
+    width:40%;
 }
 
 @keyframes dropdown { 
